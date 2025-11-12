@@ -1,26 +1,118 @@
 @import "tailwindcss";
 
+/* ============================================================
+   FONT AWESOME ICON SIZING FIX
+   ============================================================ */
+/* Prevent icon size jumping on page load by setting fixed dimensions */
+.svg-inline--fa {
+  display: inline-block;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+
+/* Ensure consistent FontAwesome icon rendering before font loads */
+svg.svg-inline--fa {
+  width: 1em !important;
+  height: 1em !important;
+}
+
+/* Dark Mode (Default) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Background Colors */
+  --bg-base: #1f1f1f;
+  --bg-surface: #2a2a2a;
+  --bg-card: #242424;
+  --bg-elevated: #1a1a1a;
+  
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #a4a4a4;
+  --text-tertiary: #787878;
+  --text-muted: #606060;
+  
+  /* Border Colors */
+  --border-light: #3a3a3a;
+  --border-medium: #4a4a4a;
+  --border-dark: #1f1f1f;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+/* Light Mode */
+@media (prefers-color-scheme: light) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg-base: #ffffff;
+    --bg-surface: #f9f9f9;
+    --bg-card: #ffffff;
+    --bg-elevated: #f5f5f5;
+    
+    --text-primary: #1f1f1f;
+    --text-secondary: #737373;
+    --text-tertiary: #888888;
+    --text-muted: #999999;
+    
+    --border-light: #e0e0e0;
+    --border-medium: #d0d0d0;
+    --border-dark: #c0c0c0;
   }
 }
 
+/* Manual override: set light theme when html[data-theme="light"] is present.
+   This lets the user toggle light mode manually and persist via JS. */
+html[data-theme="light"] {
+  --bg-base: #ffffff;
+  --bg-surface: #f9f9f9;
+  --bg-card: #ffffff;
+  --bg-elevated: #f5f5f5;
+
+  --text-primary: #1f1f1f;
+  --text-secondary: #737373;
+  --text-tertiary: #888888;
+  --text-muted: #999999;
+
+  --border-light: #e0e0e0;
+  --border-medium: #d0d0d0;
+  --border-dark: #c0c0c0;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-inter), "Inter", Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+/* ============================================================
+   GLOBAL STYLES
+   ============================================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ============================================================
+   SCROLL REVEAL ANIMATION
+   ============================================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  animation: fadeInUp 1.2s ease-out forwards;
+  opacity: 0;
+}
+
+.reveal.visible {
+  opacity: 1;
 }
