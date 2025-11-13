@@ -1,15 +1,18 @@
 import { faEnvelope, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faReact } from "@fortawesome/free-brands-svg-icons";
+import { faCode } from "@fortawesome/free-solid-svg-icons";
+import { faPython } from "@fortawesome/free-brands-svg-icons";
 
 export const PORTFOLIO_DATA = {
   name: "Richmano NASY",
   title: "Full-Stack Developer",
   tagline: "Crafting responsive digital experiences with React, Next.js, and powerful AI integration.",
   skills: [
-    { name: "React.js", level: 90, color: 'text-cyan-400' },
-    { name: "Next.js", level: 85, color: 'text-white' },
-    { name: "JavaScript", level: 88, color: 'text-yellow-400' }, 
-    { name: "HTML/CSS", level: 92, color: 'text-cyan-400' }, 
-    { name: "Python", level: 60, color: 'text-indigo-400' }, 
+    { name: "React.js", level: 90, color: 'var(--text-secondary)', icon: faReact },
+    { name: "Next.js", level: 85, color: 'var(--text-secondary)', icon: faCode },
+    { name: "JavaScript", level: 88, color: 'var(--text-secondary)', icon: faCode },
+    { name: "HTML/CSS", level: 92, color: 'var(--text-secondary)', icon: faCode },
+    { name: "Python", level: 60, color: 'var(--text-secondary)', icon: faPython },
   ],
   techLove: ["React","Next.js","Tailwind CSS","TypeScript","Vite","Google Gemini API","REST APIs","Node.js","Git/GitHub","Vercel","Framer Motion"],
   softSkills: [

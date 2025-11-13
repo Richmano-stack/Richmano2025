@@ -3,22 +3,21 @@ import { Section } from '../common/Section';
 import { SkillBar } from '../common/SkillBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
-
 interface SkillsSectionProps {
   data: any;
 }
 
 export const SkillsSection: React.FC<SkillsSectionProps> = ({ data }) => (
-  <Section id="skills" className="">
+  <Section id="skills">
     <h2
       className="text-4xl sm:text-5xl font-extrabold text-center mb-12 sm:mb-16"
       style={{ color: 'var(--text-primary)' }}
+      data-aos="fade-up"
     >
       Skills & <span style={{ color: 'var(--text-secondary)' }}>Expertise</span>
     </h2>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-12" data-aos="fade-up">
       <div className="p-6 sm:p-8 rounded-2xl shadow-xl border transition duration-300 transform hover:scale-[1.01]" style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-light)' }} onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--text-secondary)')} onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'var(--border-light)')}>
         <h3 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8" style={{ color: 'var(--text-primary)' }}>
           Technical Proficiency
@@ -29,7 +28,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ data }) => (
       </div>
 
       <div>
-        <div className="p-6 sm:p-8 rounded-2xl shadow-xl border mb-8 transition duration-300 transform hover:scale-[1.01]" style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-light)' }} onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--text-secondary)')} onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'var(--border-light)')}>
+        <div className="p-6 sm:p-8 rounded-2xl shadow-xl border mb-8 transition duration-300 transform hover:scale-[1.01]" style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-light)' }} onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--text-secondary)')} onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'var(--border-light)')} data-aos="fade-up">
           <h3 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: 'var(--text-secondary)' }}>
             Soft Skills
           </h3>
@@ -49,7 +48,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ data }) => (
         </div>
 
         <div className="p-6 sm:p-8 rounded-2xl shadow-xl border transition duration-300 transform hover:scale-[1.01]" style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-light)' }} onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--text-secondary)')} onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'var(--border-light)')}>
-          <h3 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: 'var(--text-primary)' }} data-aos="fade-up">
             Technologies I Love
           </h3>
           <div className="flex flex-wrap gap-3">

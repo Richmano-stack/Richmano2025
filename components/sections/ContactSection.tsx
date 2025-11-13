@@ -8,15 +8,16 @@ interface ContactSectionProps {
 }
 
 export const ContactSection: React.FC<ContactSectionProps> = ({ data }) => (
-  <Section id="contact" className="">
+  <Section id="contact">
     <h2
       className="text-4xl sm:text-5xl font-extrabold text-center mb-12 sm:mb-16"
       style={{ color: 'var(--text-primary)' }}
+      data-aos="fade-up"
     >
       Get In <span style={{ color: 'var(--text-secondary)' }}>Touch</span>
     </h2>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-12" data-aos="fade-up">
       {/* A. Info & Details */}
       <div className="space-y-6 sm:space-y-8">
         <h3 className="text-2xl sm:text-3xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>

@@ -1,8 +1,6 @@
 @import "tailwindcss";
 
-/* ============================================================
-   FONT AWESOME ICON SIZING FIX
-   ============================================================ */
+
 /* Prevent icon size jumping on page load by setting fixed dimensions */
 .svg-inline--fa {
   display: inline-block;
@@ -94,25 +92,3 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ============================================================
-   SCROLL REVEAL ANIMATION
-   ============================================================ */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(80px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.reveal {
-  animation: fadeInUp 1.2s ease-out forwards;
-  opacity: 0;
-}
-
-.reveal.visible {
-  opacity: 1;
-}

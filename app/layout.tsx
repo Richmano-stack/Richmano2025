@@ -1,6 +1,11 @@
+
 import type { Metadata } from "next";
 import { Inter, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import AOSInitializer from '../components/AOSInitializer';
+import 'aos/dist/aos.css';
+
+
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,11 +32,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body
         className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <AOSInitializer />
         {children}
       </body>
     </html>

@@ -1,13 +1,5 @@
 import { useEffect, useRef } from 'react';
 
-/**
- * Custom hook to add scroll-reveal animation to an element.
- * When the element enters the viewport, it fades in and slides up.
- * 
- * Usage:
- *   const ref = useScrollReveal();
- *   return <div ref={ref} className="reveal">Content</div>
- */
 export const useScrollReveal = () => {
   const ref = useRef<HTMLDivElement>(null);
 

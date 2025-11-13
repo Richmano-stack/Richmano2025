@@ -4,6 +4,8 @@ import { faSun } from "@fortawesome/free-solid-svg-icons";
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
 import ProfileImage from './ProfileImage';
 import CurrentTime from "./Timer";
+import 'aos/dist/aos.css';
+
 
 
 interface NavItem {
@@ -36,22 +38,7 @@ export const Header: React.FC<HeaderProps> = ({
     }}
   >
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-{/*       <div className="flex items-center gap-2 sm:gap-3 rounded transition shadow-md p-1 cursor-pointer"
-                      
-      style={{ backgroundColor: 'var(--bg-surface)', color: 'var(--text-secondary)' }}
-      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--border-medium)')}
-      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--bg-surface)')}
-      >
-        <ProfileImage src="./profile.png" size={55} />
-        <a
-          onClick={() => scrollToSection('home')}
-          className="text-xl sm:text-2xl font-extrabold cursor-pointer transition"
-          style={{ color: 'var(--text-primary)' }}
-        >
-          {name}
-        </a>
-        
-      </div> */}
+
       {/* Desktop Navigation - Hidden on Mobile */}
       <nav className="hidden md:flex space-x-8">
         {navItems.map((item: NavItem) => (
@@ -92,7 +79,7 @@ export const Header: React.FC<HeaderProps> = ({
         </button>
 
         <div
-          className="flex items-center gap-2 sm:gap-3 rounded transition shadow-md p-1 cursor-pointer"
+          className=" flex items-center gap-2 sm:gap-3 rounded-md transition shadow-md p-1 cursor-pointer"
           style={{ backgroundColor: 'var(--bg-surface)', color: 'var(--text-secondary)' }}
           onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--border-medium)')}
           onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--bg-surface)')}

@@ -22,7 +22,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ data, scrollToSection 
     <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-6xl gap-12 p-4">
 
       {/* LEFT BLOCK: HERO TEXT */}
-      <div className="relative z-10 w-full md:w-1/2 text-center md:text-left py-10 md:py-20">
+      <div className="relative z-10 w-full md:w-1/2 text-center md:text-left py-10 md:py-20" data-aos="fade-up">
         <p className="text-base sm:text-xl mb-2" style={{ color: 'var(--text-secondary)' }}>
           Hello, I'm
         </p>
@@ -61,7 +61,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ data, scrollToSection 
       </div>
 
       {/* RIGHT BLOCK: PROFILE CARD */}
-      <div className="w-full md:w-1/2 flex justify-center py-10" >
+      <div className="w-full md:w-1/2 flex justify-center py-10" data-aos="fade-up">
         <div 
           className="text-white p-6 rounded-2xl max-w-lg shadow-2xl border"
           style={{
