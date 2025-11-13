@@ -62,7 +62,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation (Hidden on mobile) */}
           <nav className="hidden md:flex space-x-8">
             {navItems.map((item: NavItem) => (
               <a
@@ -84,8 +84,9 @@ export const Header: React.FC<HeaderProps> = (props) => {
             ))}
           </nav>
           
-          {/* Right-side controls (theme toggle + profile) */}
-          <div className="flex items-center gap-2"> 
+          {/* Right-side controls (Timer, Theme Toggle, Profile) */}
+          {/* This container is pushed to the far right on mobile via ml-auto since <nav> is hidden. */}
+          <div className="flex items-center gap-2 ml-auto"> 
             <CurrentTime />
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
@@ -117,7 +118,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         </div>
       </header>
       
-      {/* 3. Affichage du panneau latéral (Contrôlé par shouldRender) */}
+      {/* 3. Modal Rendering */}
       {shouldRender && (          
         <div 
           className={`fixed inset-0 z-[60] transition-opacity duration-300 ${
