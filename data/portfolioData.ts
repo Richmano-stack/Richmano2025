@@ -1,7 +1,8 @@
-import { faEnvelope, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faH, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faReact } from "@fortawesome/free-brands-svg-icons";
 import { faCode } from "@fortawesome/free-solid-svg-icons";
 import { faPython } from "@fortawesome/free-brands-svg-icons";
+import { faHtml5 } from "@fortawesome/free-brands-svg-icons";
 
 export const PORTFOLIO_DATA = {
   name: "Richmano NASY",
@@ -11,7 +12,7 @@ export const PORTFOLIO_DATA = {
     { name: "React.js", level: 90, color: 'var(--text-secondary)', icon: faReact },
     { name: "Next.js", level: 85, color: 'var(--text-secondary)', icon: faCode },
     { name: "JavaScript", level: 88, color: 'var(--text-secondary)', icon: faCode },
-    { name: "HTML/CSS", level: 92, color: 'var(--text-secondary)', icon: faCode },
+    { name: "HTML/CSS", level: 92, color: 'var(--text-secondary)', icon: faHtml5 },
     { name: "Python", level: 60, color: 'var(--text-secondary)', icon: faPython },
   ],
   techLove: ["React","Next.js","Tailwind CSS","TypeScript","Vite","Google Gemini API","REST APIs","Node.js","Git/GitHub","Vercel","Framer Motion"],

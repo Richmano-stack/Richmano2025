@@ -1,7 +1,8 @@
 import React from 'react';
 import { Section } from '../common/Section';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faPhone, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 interface ContactSectionProps {
   data: any;
@@ -31,7 +32,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ data }) => (
         {/* Contact Details */}
         {[
           { label: 'Email', value: data.contact.email, icon: faEnvelope },
-          { label: 'Phone', value: data.contact.phone, icon: faPhone },
+          { label: 'WhatsApp', value: data.contact.phone, icon: faWhatsapp },
           { label: 'Location', value: data.contact.location, icon: faMapMarkerAlt },
         ].map((item: any) => (
           <div key={item.label} className="flex items-center space-x-4 p-4 rounded-xl shadow-lg border transition duration-300 transform hover:scale-[1.01]" style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-light)' }} onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--text-secondary)')} onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'var(--border-light)')}>
