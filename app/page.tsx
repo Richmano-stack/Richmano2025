@@ -10,10 +10,6 @@ import { AboutSection } from '@/components/sections/AboutSection';
 import { ContactSection } from '@/components/sections/ContactSection';
 import { PORTFOLIO_DATA } from '@/data/portfolioData';
 
-// =================================================================
-// CUSTOM HOOKS (Unchanged)
-// =================================================================
-
 const useActiveSection = (sectionIds: string[]) => {
   const [activeSection, setActiveSection] = useState(sectionIds[0]);
 
@@ -76,9 +72,7 @@ const useActiveSection = (sectionIds: string[]) => {
 export default function Home() {
   const data = PORTFOLIO_DATA;
 
-  // ❌ REMOVED: Theme state (it should be managed by ThemeContext wrapping the app)
-  // const [isDarkMode, setIsDarkMode] = useState(true);
-  
+
   const navItems = [
     { name: 'Home', id: 'home' },
     { name: 'Skills', id: 'skills' },
@@ -93,8 +87,7 @@ export default function Home() {
 
   const activeSection = useActiveSection(navItems.map((item) => item.id));
   
-  // ❌ REMOVED: Theme initialization and update useEffects (Now handled by ThemeContext)
-  
+
   return (
     <div className="font-sans" style={{ backgroundColor: 'var(--bg-base)', color: 'var(--text-primary)' }}>
       {/* Header */}

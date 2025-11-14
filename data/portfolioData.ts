@@ -26,7 +26,6 @@ export const PORTFOLIO_DATA = {
         title: "Madagascar Presidents Website", 
         tech: "Next.js, OpenAI API, Tailwind CSS", 
         desc: "A Next.js project showcasing Madagascar's political history since 1958, featuring an AI historian assistant for exploration—a demonstration of powerful LLM integration.",
-        // ✅ ADDED LINKS: Madagascar project
         liveLink: "https://madagascar-nu.vercel.app/", 
         githubLink: "https://github.com/Richmano-stack/madagascar", // Assuming this is the GitHub repo structure
     },
@@ -35,7 +34,6 @@ export const PORTFOLIO_DATA = {
         title: "Photo Resizer App", 
         tech: "Next.js, React, Tailwind CSS", 
         desc: "A clean, responsive web application built for resizing and compressing images with an intuitive, seamless user interface.",
-        // ✅ ADDED LINKS: Photo Resizer project
         liveLink: "https://photo-resize-two.vercel.app/", 
         githubLink: "https://github.com/Richmano-stack/photo-resize", // Assuming this is the GitHub repo structure
     },

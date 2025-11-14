@@ -41,8 +41,8 @@ svg.svg-inline--fa {
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
 }
 
-/* Manual override: set light theme when html[data-theme="light"] is present.
-   This lets the user toggle light mode manually and persist via JS. */
+
+
 html[data-theme="light"] {
   --bg-base: #ffffff;
   --bg-surface: #f9f9f9;
@@ -65,9 +65,7 @@ body {
   font-family: var(--font-inter), "Inter", Helvetica, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
-/* ============================================================
-   GLOBAL STYLES
-   ============================================================ */
+
 
 html {
   scroll-behavior: smooth;
