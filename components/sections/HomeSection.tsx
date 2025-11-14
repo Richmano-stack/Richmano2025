@@ -80,38 +80,60 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ data, scrollToSection 
           <div className="mb-6">
             <p className="uppercase text-xs mb-2 font-semibold" style={{ color: 'var(--text-secondary)' }}>Ping Me</p>
             <div className="flex gap-2 text-xl">
-              <button 
+              
+              {/* GitHub Link */}
+              <a 
+                href="https://github.com/Richmano-stack"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2 rounded transition"
                 style={{ backgroundColor: 'var(--bg-surface)', color: 'var(--text-secondary)' }}
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--border-medium)')}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--bg-surface)')}
+                aria-label="GitHub Profile"
               >
                 <FontAwesomeIcon icon={faGithub} />
-              </button>
-              <button 
+              </a>
+              
+              {/* LinkedIn Link */}
+              <a 
+                href="https://www.linkedin.com/in/nasy-richmano-15bb432b7"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2 rounded transition"
                 style={{ backgroundColor: 'var(--bg-surface)', color: 'var(--text-secondary)' }}
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--border-medium)')}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--bg-surface)')}
+                aria-label="LinkedIn Profile"
               >
                 <FontAwesomeIcon icon={faLinkedin} />
-              </button>
-              <button 
+              </a>
+              
+              {/* Facebook Link */}
+              <a 
+                href="https://www.facebook.com/share/17WDLA7KDe/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2 rounded transition"
                 style={{ backgroundColor: 'var(--bg-surface)', color: 'var(--text-secondary)' }}
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--border-medium)')}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--bg-surface)')}
+                aria-label="Facebook Profile"
               >
                 <FontAwesomeIcon icon={faFacebook} />
-              </button>
-              <button 
+              </a>
+              
+              {/* Email Link (mailto) */}
+              <a 
+                href="mailto:nasyrichmano@gmail.com"
                 className="p-2 rounded transition"
                 style={{ backgroundColor: 'var(--bg-surface)', color: 'var(--text-secondary)' }}
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--border-medium)')}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--bg-surface)')}
+                aria-label="Send Email"
               >
                 <FontAwesomeIcon icon={faEnvelope} />
-              </button>
+              </a>
             </div>
           </div>
 
@@ -164,7 +186,10 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ data, scrollToSection 
             </svg>
           </div>
             <a
-            onClick={() => scrollToSection('projects')}
+            href="https://cal.com/nasy-richmano-zs9hlu/30min?overlayCalendar=true"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
             className="inline-block mt-8 px-8 sm:px-10 py-3 sm:py-4 font-bold text-base sm:text-lg rounded-xl shadow-xl transition duration-300 transform hover:scale-[1.05] cursor-pointer"
             style={{
               backgroundColor: 'var(--bg-card)',

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSun } from "@fortawesome/free-solid-svg-icons";
-import { faMoon } from "@fortawesome/free-solid-svg-icons";
+import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import ProfileImage from './ProfileImage';
 import CurrentTime from "./Timer";
 import 'aos/dist/aos.css';
 import ProfileModal from './ProfileModal'; 
+import { useTheme } from "../context/ThemeContext";
 
 
 interface NavItem {
@@ -18,8 +18,6 @@ interface HeaderProps {
   navItems: NavItem[];
   activeSection: string;
   scrollToSection: (id: string) => void;
-  isDarkMode: boolean;
-  setIsDarkMode: (value: boolean) => void;
 }
 
 
@@ -34,6 +32,8 @@ export const Header: React.FC<HeaderProps> = (props) => {
     }, 10); 
   };
 
+  const { isDark, toggleTheme } = useTheme();
+
     const handleCloseModal = () => {
     setIsModalOpen(false); 
     
@@ -46,8 +46,6 @@ export const Header: React.FC<HeaderProps> = (props) => {
     navItems,
     activeSection,
     scrollToSection,
-    isDarkMode,
-    setIsDarkMode
   } = props;
 
 
@@ -89,7 +87,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
           <div className="flex items-center gap-2 ml-auto"> 
             <CurrentTime />
             <button
-              onClick={() => setIsDarkMode(!isDarkMode)}
+              onClick={toggleTheme}
               className="px-3 py-3 text-xs sm:text-sm font-mono rounded-md transition shadow-md"
               style={{ backgroundColor: 'var(--bg-surface)', color: 'var(--text-secondary)' }}
               onMouseEnter={(e) => {
@@ -100,7 +98,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
               }}
               aria-label="Toggle theme"
             >
-              {isDarkMode ? <FontAwesomeIcon size="lg" icon={faSun} /> : <FontAwesomeIcon size="lg" icon={faMoon} />}
+              {isDark ? <FontAwesomeIcon size="lg" icon={faSun} /> : <FontAwesomeIcon size="lg" icon={faMoon} />}
             </button>
 
             {/* Profile Button */}

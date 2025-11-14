@@ -4,9 +4,12 @@ interface ProjectCardProps {
   title: string;
   tech: string;
   desc: string;
+  // ✅ NEW: Props for links
+  liveLink: string;
+  githubLink: string;
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({ title, tech, desc }) => (
+export const ProjectCard: React.FC<ProjectCardProps> = ({ title, tech, desc, liveLink, githubLink }) => (
   <div
     className="p-6 rounded-xl shadow-lg border transition duration-300 transform hover:scale-[1.01] flex flex-col h-full"
     style={{
@@ -41,8 +44,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, tech, desc }) =
     )}
 
     <div className="flex space-x-4 mt-auto">
+      {/* GitHub Link */}
       <a
-        href="#"
+        href={githubLink} // ✅ Updated with githubLink prop
+        target="_blank"
+        rel="noopener noreferrer"
         className="text-sm transition flex items-center"
         style={{ color: 'var(--text-secondary)' }}
         onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-primary)')}
@@ -53,8 +59,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, tech, desc }) =
           <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.11.82-.257.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.334-1.756-1.334-1.756-1.087-.74.082-.725.082-.725 1.205.084 1.838 1.238 1.838 1.238 1.07 1.835 2.805 1.305 3.49.998.108-.77.42-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.12-.3-.538-1.528.115-3.18 0 0 1.008-.323 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.003.404 2.29-1.553 3.297-1.23 3.297-1.23.653 1.653.234 2.88.115 3.18.77.84 1.235 1.91 1.235 3.22 0 4.61-2.804 5.62-5.475 5.92.42.36.81 1.096.81 2.22 0 1.604-.015 2.896-.015 3.286 0 .32.21.693.825.575C20.565 21.385 24 16.892 24 12 24 5.373 18.627 0 12 0z" />
         </svg>
       </a>
+      
+      {/* Live Demo Link */}
       <a
-        href="#"
+        href={liveLink} // ✅ Updated with liveLink prop
+        target="_blank"
+        rel="noopener noreferrer"
         className="text-sm transition flex items-center"
         style={{ color: 'var(--text-secondary)' }}
         onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-primary)')}

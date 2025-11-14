@@ -1,8 +1,10 @@
 import React from 'react';
 import { Section } from '../common/Section';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faL, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 interface ContactSectionProps {
   data: any;
@@ -18,9 +20,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ data }) => (
       Get In <span style={{ color: 'var(--text-secondary)' }}>Touch</span>
     </h2>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-12" data-aos="fade-up">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-12" >
       {/* A. Info & Details */}
-      <div className="space-y-6 sm:space-y-8">
+      <div className="space-y-6 sm:space-y-8" data-aos="fade-up">
         <h3 className="text-2xl sm:text-3xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
           Let's Work Together
         </h3>
@@ -33,7 +35,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ data }) => (
         {[
           { label: 'Email', value: data.contact.email, icon: faEnvelope },
           { label: 'WhatsApp', value: data.contact.phone, icon: faWhatsapp },
-          { label: 'Location', value: data.contact.location, icon: faMapMarkerAlt },
+          { label: 'Github', value: data.contact.Github, icon: faGithub },
+          { label: 'Linkedin', value: data.contact.Linkedin, icon: faLinkedin },
         ].map((item: any) => (
           <div key={item.label} className="flex items-center space-x-4 p-4 rounded-xl shadow-lg border transition duration-300 transform hover:scale-[1.01]" style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-light)' }} onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--text-secondary)')} onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'var(--border-light)')}>
             <span className="text-2xl"><FontAwesomeIcon icon={item.icon} /></span>
@@ -50,7 +53,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ data }) => (
       </div>
 
       {/* B. Contact Form (Placeholder) */}
-      <div className="p-6 sm:p-8 rounded-2xl shadow-xl border transition duration-300 transform hover:scale-[1.01]" style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-light)' }} onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--text-secondary)')} onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'var(--border-light)')}>
+      <div className="p-6 sm:p-8 rounded-2xl shadow-xl border transition duration-300 transform hover:scale-[1.01]" data-aos="fade-up" style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-light)' }} onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--text-secondary)')} onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'var(--border-light)')}>
         <h3 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
           Send a Message
         </h3>

@@ -1,21 +1,31 @@
 import { useEffect, useState } from "react";
 
 export default function CurrentTime() {
-  const [time, setTime] = useState("");
+  const [dateTime, setDateTime] = useState("");
 
   useEffect(() => {
-    const updateTime = () => {
+    const updateDateTime = () => {
       const now = new Date();
-      const formatted = now.toLocaleTimeString("en-US", {
+      
+      // Format date: short weekday, short month, numeric day
+      const date = now.toLocaleDateString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+      });
+
+      // Format time: hh:mm AM/PM
+      const time = now.toLocaleTimeString("en-US", {
         hour: "numeric",
         minute: "2-digit",
         hour12: true,
       });
-      setTime(formatted);
+
+      setDateTime(`${date},  ${time}`);
     };
 
-    updateTime(); // set immediately
-    const interval = setInterval(updateTime, 1000); // update every second
+    updateDateTime(); // set immediately
+    const interval = setInterval(updateDateTime, 1000); // update every second
     return () => clearInterval(interval);
   }, []);
 
@@ -24,7 +34,7 @@ export default function CurrentTime() {
       className="text-sm sm:text-base font-semibold"
       style={{ color: "var(--text-secondary)" }}
     >
-      {time}
+      {dateTime}
     </div>
   );
 }
