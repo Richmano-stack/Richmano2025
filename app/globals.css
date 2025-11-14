@@ -41,25 +41,6 @@ svg.svg-inline--fa {
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
 }
 
-/* Light Mode */
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg-base: #ffffff;
-    --bg-surface: #f9f9f9;
-    --bg-card: #ffffff;
-    --bg-elevated: #f5f5f5;
-    
-    --text-primary: #1f1f1f;
-    --text-secondary: #737373;
-    --text-tertiary: #888888;
-    --text-muted: #999999;
-    
-    --border-light: #e0e0e0;
-    --border-medium: #d0d0d0;
-    --border-dark: #c0c0c0;
-  }
-}
-
 /* Manual override: set light theme when html[data-theme="light"] is present.
    This lets the user toggle light mode manually and persist via JS. */
 html[data-theme="light"] {
