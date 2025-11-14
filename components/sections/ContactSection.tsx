@@ -1,15 +1,12 @@
 import React, { useState, FormEvent, ChangeEvent } from 'react'; // ⭐ Nouveaux imports pour la gestion d'état et d'événements
 import { Section } from '../common/Section';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 interface ContactSectionProps {
   data: any;
 }
-
-// ⭐ Endpoint Formspree
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/xdkyapon"; 
 
 export const ContactSection: React.FC<ContactSectionProps> = ({ data }) => {
     // 1. Définition des états
@@ -34,24 +31,22 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ data }) => {
         setSubmissionStatus('sending');
 
         try {
-            const response = await fetch(FORMSPREE_ENDPOINT, {
+            const response = await fetch(data.contact.formEndpoint, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                // Formatage des données pour Formspree
                 body: JSON.stringify({
                     name: formData.name,
-                    _replyto: formData.email, // Formspree pour l'adresse de réponse
+                    _replyto: formData.email, 
                     message: formData.message,
                 }),
             });
 
             if (response.ok) {
                 setSubmissionStatus('success');
-                // Réinitialiser le formulaire après un envoi réussi
                 setFormData({ name: '', email: '', message: '' });
-                // Le message de succès s'affichera via le rendu conditionnel
+
             } else {
                 setSubmissionStatus('error');
             }
@@ -61,7 +56,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ data }) => {
         }
     };
     
-    // Le JSX utilise les états et les gestionnaires mis à jour
+
     return (
         <Section id="contact">
             <h2
@@ -73,7 +68,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ data }) => {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12" >
-                {/* A. Info & Details (Unchanged) */}
                 <div className="space-y-6 sm:space-y-8" data-aos="fade-up">
                     <h3 className="text-2xl sm:text-3xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
                         Let's Work Together
@@ -83,7 +77,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ data }) => {
                         hi, I'll try my best to get back to you!
                     </p>
 
-                    {/* Contact Details (Unchanged) */}
+
                     {[
                         { label: 'Email', value: data.contact.email, icon: faEnvelope },
                         { label: 'WhatsApp', value: data.contact.phone, icon: faWhatsapp },
@@ -104,16 +98,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ data }) => {
                     ))}
                 </div>
 
-                {/* B. Contact Form (Géré par React/AJAX) */}
+
                 <div className="p-6 sm:p-8 rounded-2xl shadow-xl border transition duration-300 transform hover:scale-[1.01]" data-aos="fade-up" style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-light)' }} onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--text-secondary)')} onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'var(--border-light)')}>
                     <h3 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
                         Send a Message
                     </h3>
                     <form
-                        onSubmit={handleSubmit} // ⭐ Utilisation du gestionnaire React
+                        onSubmit={handleSubmit} 
                         className="space-y-4"
                     >
-                        {/* INPUT NAME */}
+
                         <input 
                             type="text" 
                             name="name" 
@@ -125,14 +119,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ data }) => {
                             className="w-full p-3 rounded-lg border transition" 
                             style={{ backgroundColor: 'var(--bg-surface)', color: 'var(--text-primary)', borderColor: 'var(--border-light)' }} 
                         />
-                        {/* INPUT EMAIL */}
+
                         <input 
                             type="email" 
-                            name="email" // Utilisé 'email' pour la gestion locale, 'name' dans Formspree est '_replyto'
+                            name="email" 
                             placeholder="Email" 
                             required 
-                            value={formData.email} // ⭐
-                            onChange={handleChange} // ⭐
+                            value={formData.email} 
+                            onChange={handleChange} 
                             disabled={submissionStatus === 'sending'}
                             className="w-full p-3 rounded-lg border transition" 
                             style={{ backgroundColor: 'var(--bg-surface)', color: 'var(--text-primary)', borderColor: 'var(--border-light)' }} 
@@ -143,8 +137,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ data }) => {
                             name="message" 
                             rows={4} 
                             required 
-                            value={formData.message} // ⭐
-                            onChange={handleChange} // ⭐
+                            value={formData.message}
+                            onChange={handleChange}
                             disabled={submissionStatus === 'sending'}
                             className="w-full p-3 rounded-lg border transition" 
                             style={{ backgroundColor: 'var(--bg-surface)', color: 'var(--text-primary)', borderColor: 'var(--border-light)' }} 
