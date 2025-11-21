@@ -54,7 +54,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
       <header
         className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b shadow-xl"
         style={{
-          backgroundColor: 'var(--bg-surface)',
+          backgroundColor: 'transparent',
           borderBottomColor: 'var(--border-light)',
         }}
       >
