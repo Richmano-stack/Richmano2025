@@ -58,7 +58,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
           borderBottomColor: 'var(--border-light)',
         }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+        <div className="w-full px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16 font-normal">
 
           {/* Desktop Navigation (Hidden on mobile) */}
           <nav className="hidden md:flex space-x-8">
