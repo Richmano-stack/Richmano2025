@@ -9,6 +9,7 @@ import { ProjectsSection } from '@/components/sections/ProjectsSection';
 import { AboutSection } from '@/components/sections/AboutSection';
 import { ContactSection } from '@/components/sections/ContactSection';
 import { PORTFOLIO_DATA } from '@/data/portfolioData';
+import { Sidebar } from '@/components/sections/Sidebar';
 
 const useActiveSection = (sectionIds: string[]) => {
   const [activeSection, setActiveSection] = useState(sectionIds[0]);
@@ -72,7 +73,6 @@ const useActiveSection = (sectionIds: string[]) => {
 export default function Home() {
   const data = PORTFOLIO_DATA;
 
-
   const navItems = [
     { name: 'Home', id: 'home' },
     { name: 'Skills', id: 'skills' },
@@ -86,27 +86,39 @@ export default function Home() {
   };
 
   const activeSection = useActiveSection(navItems.map((item) => item.id));
-  
+
+  const sidebarOffsetClass = 'lg:ml-20';
+
 
   return (
     <div className="font-sans" style={{ backgroundColor: 'var(--bg-base)', color: 'var(--text-primary)' }}>
-      {/* Header */}
-      <Header
-        name={data.name}
-        navItems={navItems}
-        activeSection={activeSection}
+
+      <Sidebar
         scrollToSection={scrollToSection}
+        activeSection={activeSection}
       />
 
-      {/* Sections */}
-      <HomeSection data={data} scrollToSection={scrollToSection} />
-      <SkillsSection data={data} />
-      <ProjectsSection data={data} />
-      <AboutSection data={data} />
-      <ContactSection data={data} />
+      <div className={`transition-all duration-300 ${sidebarOffsetClass}`}>
 
-      {/* Footer */}
-      <Footer />
+        {/* Header with navigation */}
+        <Header
+          name={data.name}
+          navItems={navItems}
+          activeSection={activeSection}
+          scrollToSection={scrollToSection}
+        />
+
+        {/* Sections */}
+        <HomeSection data={data} scrollToSection={scrollToSection} />
+        <SkillsSection data={data} />
+        <ProjectsSection data={data} />
+        <AboutSection data={data} />
+        <ContactSection data={data} />
+
+        {/* Footer */}
+        <Footer data={data} />
+
+      </div>
     </div>
   );
 }

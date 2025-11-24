@@ -18,21 +18,24 @@ svg.svg-inline--fa {
 /* Dark Mode (Default) */
 :root {
   /* Background Colors */
-  --bg-base: #1f1f1f;
-  --bg-surface: #2a2a2a;
-  --bg-card: #242424;
-  --bg-elevated: #1a1a1a;
+  --bg-base: #121212; /* Softer black */
+  --bg-surface: #1E1E1E;
+  --bg-card: #252525;
+  --bg-elevated: #2C2C2C;
   
   /* Text Colors */
-  --text-primary: #ffffff;
-  --text-secondary: #a4a4a4;
-  --text-tertiary: #787878;
-  --text-muted: #606060;
+  --text-primary: #F3F4F6; /* High contrast white */
+  --text-secondary: #D1D5DB; /* Lighter grey */
+  --text-tertiary: #9CA3AF;
+  --text-muted: #6B7280;
+  
+  /* Accent Color */
+  --color-accent: #3B82F6; /* Electric Blue */
   
   /* Border Colors */
-  --border-light: #3a3a3a;
-  --border-medium: #4a4a4a;
-  --border-dark: #1f1f1f;
+  --border-light: #374151;
+  --border-medium: #4B5563;
+  --border-dark: #1F2937;
   
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);

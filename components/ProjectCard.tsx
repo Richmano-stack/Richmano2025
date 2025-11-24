@@ -6,6 +6,7 @@ interface ProjectCardProps {
   desc: string;
   liveLink: string;
   githubLink: string;
+  features?: string[];
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -14,6 +15,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   desc,
   liveLink,
   githubLink,
+  features = [],
 }) => (
   <div
     className="p-6 rounded-xl shadow-lg border transition duration-300 transform hover:scale-[1.01] flex flex-col h-full"
@@ -46,17 +48,22 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       {desc}
     </p>
 
-    {title.includes('AI Historian') && (
-      <span
-        className="text-xs font-semibold border p-1 rounded-full w-fit mb-4"
-        style={{
-          color: 'var(--text-secondary)',
-          borderColor: 'var(--text-secondary)',
-          backgroundColor: 'var(--bg-surface)',
-        }}
-      >
-        ✨ Features LLM Integration
-      </span>
+    {features.length > 0 && (
+      <div className="flex flex-wrap gap-2 mb-4">
+        {features.map((feature, index) => (
+          <span
+            key={index}
+            className="text-xs font-semibold border p-1 rounded-full w-fit"
+            style={{
+              color: 'var(--text-secondary)',
+              borderColor: 'var(--text-secondary)',
+              backgroundColor: 'var(--bg-surface)',
+            }}
+          >
+            ✨ {feature}
+          </span>
+        ))}
+      </div>
     )}
 
     <div className="flex space-x-4 mt-auto">

@@ -35,9 +35,10 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
       >
         <ThemeProvider>
           <AOSInitializer />

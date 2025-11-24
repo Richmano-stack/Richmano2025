@@ -1,178 +1,210 @@
-import React, { useState, FormEvent, ChangeEvent } from 'react'; // ⭐ Nouveaux imports pour la gestion d'état et d'événements
+import React, { useState } from 'react';
 import { Section } from '../common/Section';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { faWhatsapp, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faPaperPlane, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface ContactSectionProps {
   data: any;
 }
 
 export const ContactSection: React.FC<ContactSectionProps> = ({ data }) => {
-    // 1. Définition des états
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        message: '',
-    });
-    const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
-    // 2. Gestionnaire de changement pour les inputs
-    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
-    };
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormStatus('submitting');
 
-    // 3. Gestionnaire de soumission AJAX
-    const handleSubmit = async (e: FormEvent) => {
-        e.preventDefault();
-        setSubmissionStatus('sending');
+    const formData = new FormData(e.currentTarget);
 
-        try {
-            const response = await fetch(data.contact.formEndpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: formData.name,
-                    _replyto: formData.email, 
-                    message: formData.message,
-                }),
-            });
-
-            if (response.ok) {
-                setSubmissionStatus('success');
-                setFormData({ name: '', email: '', message: '' });
-
-            } else {
-                setSubmissionStatus('error');
-            }
-        } catch (error) {
-            setSubmissionStatus('error');
-            console.error('Submission error:', error);
+    try {
+      const response = await fetch(data.contact.formEndpoint, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
         }
-    };
-    
+      });
 
-    return (
-        <Section id="contact">
-            <h2
-                className="text-4xl sm:text-5xl font-extrabold text-center mb-12 sm:mb-16"
-                style={{ color: 'var(--text-primary)' }}
-                data-aos="fade-up"
+      if (response.ok) {
+        setFormStatus('success');
+        (e.target as HTMLFormElement).reset();
+        setTimeout(() => setFormStatus('idle'), 5000);
+      } else {
+        setFormStatus('error');
+        setTimeout(() => setFormStatus('idle'), 5000);
+      }
+    } catch (error) {
+      setFormStatus('error');
+      setTimeout(() => setFormStatus('idle'), 5000);
+    }
+  };
+
+  return (
+    <Section id="contact" className="py-20">
+      <motion.h2
+        className="text-4xl sm:text-5xl font-extrabold text-center mb-16"
+        style={{ color: 'var(--text-primary)' }}
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        Get In <span style={{ color: 'var(--text-secondary)' }}>Touch</span>
+      </motion.h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto px-4">
+
+        {/* Contact Info */}
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <h3 className="text-2xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
+            Let's Talk
+          </h3>
+          <p className="text-lg mb-8" style={{ color: 'var(--text-secondary)' }}>
+            I'm currently open to new opportunities and collaborations.
+            Whether you have a question or just want to say hi, I'll try my best to get back to you!
+          </p>
+
+          <div className="space-y-6">
+            <motion.a
+              href={`mailto:${data.contact.email}`}
+              className="flex items-center gap-4 text-lg transition-colors"
+              style={{ color: 'var(--text-primary)' }}
+              whileHover={{ x: 5, color: 'var(--text-secondary)' }}
             >
-                Get In <span style={{ color: 'var(--text-secondary)' }}>Touch</span>
-            </h2>
+              <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--bg-surface)' }}>
+                <FontAwesomeIcon icon={faEnvelope} />
+              </div>
+              {data.contact.email}
+            </motion.a>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12" >
-                <div className="space-y-6 sm:space-y-8" data-aos="fade-up">
-                    <h3 className="text-2xl sm:text-3xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
-                        Let's Work Together
-                    </h3>
-                    <p className="mb-6 text-base" style={{ color: 'var(--text-secondary)' }}>
-                        I'm always interested in new opportunities and exciting projects. Whether you have a question or just want to say
-                        hi, I'll try my best to get back to you!
-                    </p>
+            <motion.a
+              href={`tel:${data.contact.phone}`}
+              className="flex items-center gap-4 text-lg transition-colors"
+              style={{ color: 'var(--text-primary)' }}
+              whileHover={{ x: 5, color: 'var(--text-secondary)' }}
+            >
+              <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--bg-surface)' }}>
+                <FontAwesomeIcon icon={faPhone} />
+              </div>
+              {data.contact.phone}
+            </motion.a>
 
-
-                    {[
-                        { label: 'Email', value: data.contact.email, icon: faEnvelope },
-                        { label: 'WhatsApp', value: data.contact.phone, icon: faWhatsapp },
-                        { label: 'Github', value: data.contact.Github, icon: faGithub },
-                        { label: 'Linkedin', value: data.contact.Linkedin, icon: faLinkedin },
-                    ].map((item: any) => (
-                        <div key={item.label} className="flex items-center space-x-4 p-4 rounded-xl shadow-lg border transition duration-300 transform hover:scale-[1.01]" style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-light)' }} onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--text-secondary)')} onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'var(--border-light)')}>
-                            <span className="text-2xl" style={{ color: 'var(--text-secondary)' }}><FontAwesomeIcon icon={item.icon} /></span>
-                            <div>
-                                <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>
-                                    {item.label}
-                                </p>
-                                <p className="text-sm" style={{ color: 'var(--text-primary)' }}>
-                                    {item.value}
-                                </p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-
-                <div className="p-6 sm:p-8 rounded-2xl shadow-xl border transition duration-300 transform hover:scale-[1.01]" data-aos="fade-up" style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-light)' }} onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--text-secondary)')} onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'var(--border-light)')}>
-                    <h3 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
-                        Send a Message
-                    </h3>
-                    <form
-                        onSubmit={handleSubmit} 
-                        className="space-y-4"
-                    >
-
-                        <input 
-                            type="text" 
-                            name="name" 
-                            placeholder="Name" 
-                            required 
-                            value={formData.name} // ⭐
-                            onChange={handleChange} // ⭐
-                            disabled={submissionStatus === 'sending'}
-                            className="w-full p-3 rounded-lg border transition" 
-                            style={{ backgroundColor: 'var(--bg-surface)', color: 'var(--text-primary)', borderColor: 'var(--border-light)' }} 
-                        />
-
-                        <input 
-                            type="email" 
-                            name="email" 
-                            placeholder="Email" 
-                            required 
-                            value={formData.email} 
-                            onChange={handleChange} 
-                            disabled={submissionStatus === 'sending'}
-                            className="w-full p-3 rounded-lg border transition" 
-                            style={{ backgroundColor: 'var(--bg-surface)', color: 'var(--text-primary)', borderColor: 'var(--border-light)' }} 
-                        />
-                        {/* TEXTAREA MESSAGE */}
-                        <textarea 
-                            placeholder="Message" 
-                            name="message" 
-                            rows={4} 
-                            required 
-                            value={formData.message}
-                            onChange={handleChange}
-                            disabled={submissionStatus === 'sending'}
-                            className="w-full p-3 rounded-lg border transition" 
-                            style={{ backgroundColor: 'var(--bg-surface)', color: 'var(--text-primary)', borderColor: 'var(--border-light)' }} 
-                        />
-                        
-                        {/* Messages d'état de soumission */}
-                        {submissionStatus === 'success' && (
-                            <p className="text-center font-bold p-2 rounded-lg" style={{ color: '#10B981', backgroundColor: 'rgba(16, 185, 129, 0.1)' }}>
-                                Message Sent Successfully! 🎉
-                            </p>
-                        )}
-                        {submissionStatus === 'error' && (
-                            <p className="text-center font-bold p-2 rounded-lg" style={{ color: '#EF4444', backgroundColor: 'rgba(239, 68, 68, 0.1)' }}>
-                                Error sending message. Please try again! 😔
-                            </p>
-                        )}
-
-                        <button
-                            type="submit"
-                            disabled={submissionStatus === 'sending' || submissionStatus === 'success'}
-                            className="w-full py-3 font-bold rounded-lg transition duration-300 active:scale-[0.99] shadow-md"
-                            style={{ 
-                                backgroundColor: submissionStatus === 'sending' ? 'var(--text-tertiary)' : 'var(--border-medium)', 
-                                color: 'var(--text-primary)',
-                                opacity: submissionStatus === 'sending' || submissionStatus === 'success' ? 0.7 : 1, // Opacité si désactivé
-                                cursor: submissionStatus === 'sending' || submissionStatus === 'success' ? 'not-allowed' : 'pointer'
-                            }}
-                        >
-                            {/* Texte du bouton selon l'état */}
-                            {submissionStatus === 'sending' ? 'Sending...' : 'Send Message'}
-                        </button>
-                    </form>
-                </div>
+            <div className="flex gap-4 mt-8">
+              {data.contact.socialLinks.map((link: any) => (
+                <motion.a
+                  key={link.label}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-full flex items-center justify-center text-xl transition-colors"
+                  style={{ backgroundColor: 'var(--bg-surface)', color: 'var(--text-primary)' }}
+                  whileHover={{ scale: 1.1, backgroundColor: 'var(--border-medium)' }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <FontAwesomeIcon icon={link.icon} />
+                </motion.a>
+              ))}
             </div>
-        </Section>
-    );
+          </div>
+        </motion.div>
+
+        {/* Contact Form */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <form onSubmit={handleSubmit} className="space-y-6 p-8 rounded-2xl border shadow-lg" style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-light)' }}>
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>Name</label>
+              <motion.input
+                type="text"
+                id="name"
+                name="name"
+                required
+                className="w-full px-4 py-3 rounded-lg outline-none border transition-colors"
+                style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-light)', color: 'var(--text-primary)' }}
+                whileFocus={{ scale: 1.01, borderColor: 'var(--text-secondary)' }}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>Email</label>
+              <motion.input
+                type="email"
+                id="email"
+                name="email"
+                required
+                className="w-full px-4 py-3 rounded-lg outline-none border transition-colors"
+                style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-light)', color: 'var(--text-primary)' }}
+                whileFocus={{ scale: 1.01, borderColor: 'var(--text-secondary)' }}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>Message</label>
+              <motion.textarea
+                id="message"
+                name="message"
+                required
+                rows={4}
+                className="w-full px-4 py-3 rounded-lg outline-none border transition-colors resize-none"
+                style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-light)', color: 'var(--text-primary)' }}
+                whileFocus={{ scale: 1.01, borderColor: 'var(--text-secondary)' }}
+              />
+            </div>
+
+            <motion.button
+              type="submit"
+              disabled={formStatus === 'submitting'}
+              className="w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-md"
+              style={{ backgroundColor: 'var(--text-primary)', color: 'var(--bg-base)' }}
+              whileHover={{ scale: 1.02, opacity: 0.9 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {formStatus === 'submitting' ? (
+                'Sending...'
+              ) : (
+                <>
+                  Send Message
+                  <FontAwesomeIcon icon={faPaperPlane} />
+                </>
+              )}
+            </motion.button>
+
+            <AnimatePresence>
+              {formStatus === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="text-green-500 text-center font-medium"
+                >
+                  Message sent successfully!
+                </motion.div>
+              )}
+              {formStatus === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="text-red-500 text-center font-medium"
+                >
+                  Something went wrong. Please try again.
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </form>
+        </motion.div>
+
+      </div>
+    </Section>
+  );
 };
