@@ -45,8 +45,19 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
   return (
     <>
+<<<<<<< HEAD
       <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--bg-base)]/80 backdrop-blur-md border-b border-[var(--border-light)] transition-colors duration-300">
         <div className="w-full px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16 font-normal">
+=======
+      <header
+        className="fixed top-0 left-0 right-0 z-50"
+        style={{
+          backgroundColor: 'transparent',
+          borderBottomColor: 'var(--border-light)',
+        }}
+      >
+        <div className="w-full px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16 font-normal backdrop-blur-sm shadow-xl border-b border-b-[0.5px] border-white/10">
+>>>>>>> dc924b98ae77dad590a266b4cd0e5db081818779
 
           <div className="flex items-center gap-4 ml-auto">
             <div className="hidden sm:block">
