@@ -18,25 +18,29 @@ svg.svg-inline--fa {
 /* Dark Mode (Default) */
 :root {
   /* Background Colors */
-  --bg-base: #121212; /* Softer black */
+  --bg-base: #121212;
+  /* Softer black */
   --bg-surface: #1E1E1E;
   --bg-card: #252525;
   --bg-elevated: #2C2C2C;
-  
+
   /* Text Colors */
-  --text-primary: #F3F4F6; /* High contrast white */
-  --text-secondary: #D1D5DB; /* Lighter grey */
+  --text-primary: #F3F4F6;
+  /* High contrast white */
+  --text-secondary: #D1D5DB;
+  /* Lighter grey */
   --text-tertiary: #9CA3AF;
   --text-muted: #6B7280;
-  
+
   /* Accent Color */
-  --color-accent: #3B82F6; /* Electric Blue */
-  
+  --color-accent: #3B82F6;
+  /* Electric Blue */
+
   /* Border Colors */
   --border-light: #374151;
   --border-medium: #4B5563;
   --border-dark: #1F2937;
-  
+
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
@@ -62,15 +66,17 @@ html[data-theme="light"] {
   --border-dark: #c0c0c0;
 }
 
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
 body {
   background: var(--bg-base);
   color: var(--text-primary);
   font-family: var(--font-inter), "Inter", Helvetica, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
-
-
-html {
-  scroll-behavior: smooth;
-}
-

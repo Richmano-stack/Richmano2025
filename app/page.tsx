@@ -91,14 +91,14 @@ export default function Home() {
 
 
   return (
-    <div className="font-sans" style={{ backgroundColor: 'var(--bg-base)', color: 'var(--text-primary)' }}>
+    <div className="font-sans overflow-x-hidden max-w-[100vw]" style={{ backgroundColor: 'var(--bg-base)', color: 'var(--text-primary)' }}>
 
       <Sidebar
         scrollToSection={scrollToSection}
         activeSection={activeSection}
       />
 
-      <div className={`transition-all duration-300 ${sidebarOffsetClass}`}>
+      <div className={`transition-all duration-300 ${sidebarOffsetClass} overflow-x-hidden`}>
 
         {/* Header with navigation */}
         <Header
